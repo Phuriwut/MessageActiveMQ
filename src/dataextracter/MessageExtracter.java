@@ -1,12 +1,14 @@
-public class Message {
+package dataextracter;
+
+public class MessageExtracter {
 
     private String name;
     private String message;
 
-    public Message() {
+    public MessageExtracter() {
     }
 
-    public Message(String name, String message) {
+    public MessageExtracter(String name, String message) {
         this.name = name;
         this.message = message;
     }
@@ -29,7 +31,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" + "name=" + name + ", message=" + message + '}';
+        return "{name: \"" + name + "\", message: \"" + message + "\"}";
     }
 
 }
