@@ -21,24 +21,38 @@ public class EventListen implements DataListener<RegisterExtracter> {
     @Override
     public void onData(SocketIOClient client, RegisterExtracter registerExtracter, AckRequest ackRequest) throws Exception {
         System.out.println("Firstname: " + registerExtracter.getFirstname());
-        NotificationExtracter noti = new NotificationExtracter();
-        noti.setStatus(0);
-        noti.setTitle("success");
-        noti.setDetail("ice ice ice");
-        client.sendEvent("NOTIFICATE",noti);
+
         // We will send a small text message saying 'Hello World!!!'
         if(registerExtracter.getCareer() < 5 &&
-                registerExtracter.getBank_id().length() < 13 &&
+                registerExtracter.getBank_id().length() == 12 &&
                 registerExtracter.getBank_name() < 6) {
             TextMessage message = this.session
                     .createTextMessage(registerExtracter.toString());
 
-
             // Here we are sending our message!
             this.producerRegister.send(message);
+            statusSuccess(client);
 
             System.out.println("Message Register::: '" + message.getText() + "'");
+        }else {
+            statusWarming(client);
         }
+    }
+
+    public void statusSuccess(SocketIOClient client){
+        NotificationExtracter noti = new NotificationExtracter();
+        noti.setStatus(0);
+        noti.setTitle("Success");
+        noti.setDetail("Welcome to my world!!");
+        client.sendEvent("NOTIFICATE",noti);
+    }
+
+    public void statusWarming(SocketIOClient client){
+        NotificationExtracter noti = new NotificationExtracter();
+        noti.setStatus(1);
+        noti.setTitle("Warming");
+        noti.setDetail("Character is wrong \nCheck character again");
+        client.sendEvent("NOTIFICATE",noti);
     }
 
 }

@@ -1,9 +1,5 @@
 import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
-import com.corundumstudio.socketio.*;
-import com.corundumstudio.socketio.listener.DataListener;
-import dataextracter.MessageExtracter;
 import org.apache.log4j.BasicConfigurator;
 
 import javax.jms.JMSException;
@@ -14,7 +10,6 @@ import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -47,38 +42,20 @@ public class main {
 
         // MessageProducer is used for sending messages to the queue.
         MessageProducer producerRegister = session.createProducer(destinationRegister);
-        MessageProducer producer =session.createProducer(destination);
+        MessageProducer producer = session.createProducer(destination);
 
-        //activemq
+        //activeMQ
         BasicConfigurator.configure();
 
         Configuration config = new Configuration();
         config.setHostname("0.0.0.0");
         config.setPort(3700);
+        //config.setStoreFactory(); how to use this
 
         SocketIOServer server = new SocketIOServer(config);
 
         server.addConnectListener(new ConnectEvent());
-
         server.addDisconnectListener(new DisconnectEvent());
-
-        server.addEventListener("send", MessageExtracter.class, new DataListener<MessageExtracter>() {
-
-            @Override
-            public void onData(SocketIOClient client, MessageExtracter data, AckRequest ackSender) throws Exception {
-                System.out.println("onSend: " + data.toString());
-                // We will send a small text message saying 'Hello World!!!'
-                TextMessage message = session
-                        .createTextMessage( data.toString());
-
-                // Here we are sending our message!
-                producer.send(message);
-
-                System.out.println("JCG printing@@ '" + message.getText() + "'");
-            }
-        });
-
-
         server.addEventListener("REGISTER", RegisterExtracter.class, new EventListen(session, producerRegister));
 
         server.start();

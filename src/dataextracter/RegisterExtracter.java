@@ -82,14 +82,14 @@ public class RegisterExtracter {
 
     @Override
     public String toString() {
-        return "Register{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", age=" + age +
-                ", career=" + career +
-                ", income=" + income +
-                ", bank_id='" + bank_id + '\'' +
-                ", bank_name='" + bank_name + '\'' +
+        return "{" +
+                "firstname : \"" + firstname +
+                "\",lastname : \"" + lastname +
+                "\",age : "  + age +
+                ",career : " + career +
+                ",income : " + income +
+                ",bank_id : \"" + bank_id +
+                "\",bank_name : " + bank_name +
                 '}';
     }
 }
