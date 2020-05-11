@@ -1,18 +1,22 @@
 package dataextracter;
 
-public class RegisterExtracter {
+import java.util.UUID;
+
+public class RegisterExtracter extends  Extracter{
     private String firstname, lastname;
+    private String email;
+    private String password;
     private int age;
     private int career ,income;
     private String bank_id ;
     private int bank_name;
 
     //constructor
-
-
-    public RegisterExtracter(String firstname, String lastname, int age, int career, int income, String bank_id, int bank_name) {
+    public RegisterExtracter(String firstname, String lastname, String email, String password, int age, int career, int income, String bank_id, int bank_name) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.email = email;
+        this.password  = password;
         this.age = age;
         this.career = career;
         this.income = income;
@@ -39,6 +43,14 @@ public class RegisterExtracter {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public int getAge() {
         return age;
@@ -80,17 +92,22 @@ public class RegisterExtracter {
         this.bank_name = bank_name;
     }
 
+
+
     @Override
     public String toString() {
         return "{" +
                 "firstname : \"" + firstname +
                 "\",lastname : \"" + lastname +
+                "\",email : \"" + email +
+                "\",password : \"" + password +
                 "\",age : "  + age +
                 ",career : " + career +
                 ",income : " + income +
                 ",bank_id : \"" + bank_id +
                 "\",bank_name : " + bank_name +
-                '}';
+                ",session_id : \"" + this.sessionID +
+                "\"}";
     }
 }
 

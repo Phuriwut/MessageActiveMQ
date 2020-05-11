@@ -10,5 +10,7 @@
     <orderEntry type="library" name="com.corundumstudio.socketio:netty-socketio:1.7.18" level="project" />
     <orderEntry type="library" name="org.slf4j:slf4j-log4j12:1.7.12" level="project" />
     <orderEntry type="library" name="at.researchstudio.sat:won-matcher-solr:0.5" level="project" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" name="com.fatboyindustrial.gson-javatime-serialisers:gson-javatime-serialisers:1.1.1" level="project" />
   </component>
 </module>
