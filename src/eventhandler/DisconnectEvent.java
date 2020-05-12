@@ -2,6 +2,7 @@ package eventhandler;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.DisconnectListener;
+import session.SessionData;
 import session.SessionStore;
 import session.SessionStoreInstance;
 
@@ -10,6 +11,5 @@ public class DisconnectEvent implements DisconnectListener {
     @Override
     public void onDisconnect(SocketIOClient client) {
         System.out.println("disconnected " + client.getSessionId().toString());
-        session.removeSessionData(client.getSessionId().toString());
     }
 }

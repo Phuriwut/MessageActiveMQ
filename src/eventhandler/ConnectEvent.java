@@ -12,9 +12,15 @@ public class ConnectEvent implements ConnectListener {
 
     @Override
     public void onConnect(SocketIOClient client) {
-        HandshakeData hcd = client.getHandshakeData();
         System.out.println("connected : " + client.getSessionId().toString());
-        SessionData userSession = new SessionData(client);
-        session.addSessionData(client.getSessionId().toString(), userSession);
+        SessionData userSession= this.session.getSessionData(client.getSessionId().toString());
+        System.out.println(userSession);
+        if(userSession != null){
+            userSession.setClient(client);
+            System.out.println(userSession.isLogin());
+            if(userSession.isLogin()) client.sendEvent("RECEIVE_PROFILE", userSession.toString());
+        }else{
+            this.session.addSessionData(client.getSessionId().toString(),new SessionData(client));
+        }
     }
 }

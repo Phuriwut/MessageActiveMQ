@@ -10,7 +10,7 @@ public class MessagerInstance {
     private static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 
     // default broker URL is : tcp://localhost:61616"
-    private static String subjectRegister = "REGISTER";
+    private static String subjectRegister = "SOCKET2WORK";
     private static String subject = "WORK2SOCKET";
 
     Session session;

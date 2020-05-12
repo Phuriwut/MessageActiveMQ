@@ -1,6 +1,7 @@
 package session;
 
 import com.corundumstudio.socketio.SocketIOClient;
+import org.json.JSONObject;
 
 public class SessionData {
     private String firstname, lastname;
@@ -10,6 +11,11 @@ public class SessionData {
     private String bank_id ;
     private int bank_name;
     private SocketIOClient client;
+    private boolean isLogin = false;
+
+    public void setClient(SocketIOClient client) {
+        this.client = client;
+    }
 
     public SocketIOClient getClient() {
         return client;
@@ -59,7 +65,30 @@ public class SessionData {
         this.client = client;
     }
 
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+    }
+
     public SessionData(SocketIOClient client) {
         this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        JSONObject ooj = new JSONObject();
+        ooj.put("firstname",firstname);
+        ooj.put("lastname",lastname);
+        ooj.put("email",email);
+        ooj.put("career",career);
+        ooj.put("incomce",income);
+        ooj.put("bank_name",bank_name);
+        ooj.put("bank_id",bank_id);
+        ooj.put("isLogin",isLogin);
+
+        return ooj.toString();
     }
 }

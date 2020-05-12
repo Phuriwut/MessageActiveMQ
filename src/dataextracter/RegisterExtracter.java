@@ -1,5 +1,7 @@
 package dataextracter;
 
+import org.json.JSONObject;
+
 import java.util.UUID;
 
 public class RegisterExtracter extends  Extracter{
@@ -96,18 +98,18 @@ public class RegisterExtracter extends  Extracter{
 
     @Override
     public String toString() {
-        return "{" +
-                "firstname : \"" + firstname +
-                "\",lastname : \"" + lastname +
-                "\",email : \"" + email +
-                "\",password : \"" + password +
-                "\",age : "  + age +
-                ",career : " + career +
-                ",income : " + income +
-                ",bank_id : \"" + bank_id +
-                "\",bank_name : " + bank_name +
-                ",session_id : \"" + this.sessionID +
-                "\"}";
+        JSONObject obj = new JSONObject();
+        obj.put("firstname", firstname);
+        obj.put("lastname",lastname);
+        obj.put("email", email);
+        obj.put("password", password);
+        obj.put("age",age);
+        obj.put("career", career);
+        obj.put("income", income);
+        obj.put("bank_id", bank_id);
+        obj.put("bank_name", bank_name);
+        obj.put("session_id", sessionID);
+        return obj.toString();
     }
 }
 

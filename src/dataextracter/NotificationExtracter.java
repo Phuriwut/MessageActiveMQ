@@ -41,11 +41,11 @@ public class NotificationExtracter {
 
     @Override
     public String toString() {
-        return "Notification{" +
-                "status=" + status +
-                ", title='" + title + '\'' +
-                ", detail='" + detail + '\'' +
-                '}';
+        return "{" +
+                "\"status\": " + status +
+                ", \"title\": \"" + title + "\"" +
+                ", \"detail\": \"" + detail + "\"" +
+                "}";
     }
 }
 
