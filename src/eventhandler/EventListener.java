@@ -5,7 +5,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.DataListener;
 import session.SessionStore;
 import session.SessionStoreInstance;
-import Message.*;
+import message.*;
 
 import javax.jms.*;
 import java.util.UUID;

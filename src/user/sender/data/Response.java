@@ -1,4 +1,4 @@
-package UserSenderData;
+package user.sender.data;
 
 public class Response{
     private String type;

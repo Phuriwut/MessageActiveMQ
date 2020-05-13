@@ -1,6 +1,6 @@
-import Message.Messager;
-import Message.MessagerInstance;
-import UserSenderData.*;
+import message.Messager;
+import message.MessagerInstance;
+import user.sender.data.*;
 import com.google.gson.Gson;
 import session.SessionStore;
 import session.SessionStoreInstance;

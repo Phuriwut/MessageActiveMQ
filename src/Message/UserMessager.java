@@ -1,4 +1,4 @@
-package Message;
+package message;
 
 import com.google.gson.Gson;
 

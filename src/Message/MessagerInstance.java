@@ -1,4 +1,4 @@
-package Message;
+package message;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
