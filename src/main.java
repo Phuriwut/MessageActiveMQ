@@ -6,12 +6,10 @@ import javax.jms.*;
 
 // activemq
 
+import dataextracter.Extracter;
 import dataextracter.LoginExtracter;
-import eventhandler.ConnectEvent;
-import eventhandler.DisconnectEvent;
+import eventhandler.*;
 import dataextracter.RegisterExtracter;
-import eventhandler.LoginListener;
-import eventhandler.RegisterListener;
 
 public class main {
     public static void main(String args[])  throws JMSException{
@@ -27,8 +25,10 @@ public class main {
 
         server.addConnectListener(new ConnectEvent());
         server.addDisconnectListener(new DisconnectEvent());
+
         server.addEventListener("REGISTER", RegisterExtracter.class, new RegisterListener());
         server.addEventListener("LOGIN", LoginExtracter.class, new LoginListener());
+        server.addEventListener("LOGOUT", Extracter.class, new LogoutListen());
 
         server.start();
         Thread th = new Thread(new UserSender());
