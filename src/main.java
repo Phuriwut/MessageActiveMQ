@@ -6,6 +6,7 @@ import javax.jms.*;
 
 // activemq
 
+import constance.events.ServerEvents;
 import dataextracter.Extracter;
 import dataextracter.LoginExtracter;
 import eventhandler.*;
@@ -26,9 +27,9 @@ public class main {
         server.addConnectListener(new ConnectEvent());
         server.addDisconnectListener(new DisconnectEvent());
 
-        server.addEventListener("REGISTER", RegisterExtracter.class, new RegisterListener());
-        server.addEventListener("LOGIN", LoginExtracter.class, new LoginListener());
-        server.addEventListener("LOGOUT", Extracter.class, new LogoutListen());
+        server.addEventListener(ServerEvents.REGISTER.getString(), RegisterExtracter.class, new RegisterListener());
+        server.addEventListener(ServerEvents.LOGIN.getString(), LoginExtracter.class, new LoginListener());
+        server.addEventListener(ServerEvents.LOGOUT.getString(), Extracter.class, new LogoutListen());
 
         server.start();
         Thread th = new Thread(new UserSender());
