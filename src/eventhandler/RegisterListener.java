@@ -2,6 +2,8 @@ package eventhandler;
 
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
+import constance.events.ClientEvents;
+import constance.events.ServerEvents;
 import dataextracter.NotificationExtracter;
 import dataextracter.RegisterExtracter;
 import org.json.JSONObject;
@@ -24,7 +26,7 @@ public class RegisterListener extends  EventListener<RegisterExtracter> {
                 registerExtracter.getPassword().length() >= 6) {
 
             JSONObject obj = new JSONObject();
-            obj.put("type", "REGISTER");
+            obj.put("type", ServerEvents.REGISTER.getString());
             obj.put("data", registerExtracter.toString());
             this.messager.send(obj.toString());
 
@@ -39,7 +41,7 @@ public class RegisterListener extends  EventListener<RegisterExtracter> {
         noti.setStatus(0);
         noti.setTitle("Success");
         noti.setDetail("Waiting for Server accept ☺");
-        client.sendEvent("NOTIFICATE",noti.toString());
+        client.sendEvent(ClientEvents.NOTIFICATE.getString(),noti.toString());
     }
 
     public void statusWarming(SocketIOClient client){
@@ -48,6 +50,6 @@ public class RegisterListener extends  EventListener<RegisterExtracter> {
         noti.put("title", "Warming");
         noti.put("detail","Character is wrong\nCheck character again ");
         System.out.println(noti.toString());
-        client.sendEvent("NOTIFICATE",noti.toString());
+        client.sendEvent(ClientEvents.NOTIFICATE.getString(),noti.toString());
     }
 }

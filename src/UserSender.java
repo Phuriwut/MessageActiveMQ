@@ -1,3 +1,4 @@
+import constance.events.ClientEvents;
 import message.Messager;
 import message.MessagerInstance;
 import user.sender.data.*;
@@ -31,7 +32,7 @@ public class UserSender implements  Runnable{
             Response res = this.gson.fromJson(message, Response.class);
             String event = res.getType();
             System.out.println(event);
-            if(event.equals("LOGIN_RECEIVE")){
+            if(event.equals(ClientEvents.LOGIN_RECEIVE.getString())){
                 ush.loginData(res);
             }else {
                 ush.passData(res);
