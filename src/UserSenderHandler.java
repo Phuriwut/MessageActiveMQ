@@ -20,9 +20,6 @@ public class UserSenderHandler {
         String event = res.getType();
         String data = res.getData();
         sessionData.getClient().sendEvent(event, data);
-
-        JsonParser jsonParser = new JsonParser();
-        JsonObject objectFromString = jsonParser.parse(data).getAsJsonObject();
     }
 
     public void  loginData(Response res){
@@ -30,6 +27,8 @@ public class UserSenderHandler {
         JsonParser jsonParser = new JsonParser();
         JsonObject objectFromString = jsonParser.parse(data).getAsJsonObject();
         SessionData sessionData = this.session.getSessionData(res.getSessionID());
+        this.passData(res);
+        if(!objectFromString.get("status").getAsString().equals("SUCCESS")) return;
         sessionData.setFirstname(objectFromString.get("firstname").getAsString());
         sessionData.setLastname(objectFromString.get("lastname").getAsString());
         sessionData.setEmail(objectFromString.get("email").getAsString());
@@ -38,11 +37,11 @@ public class UserSenderHandler {
         sessionData.setIncome(objectFromString.get("income").getAsInt());
         sessionData.setBank_id(objectFromString.get("bank_id").getAsString());
         sessionData.setBank_name(objectFromString.get("bank_name").getAsInt());
-//        System.out.println(sessionData.isLogin());
+//    System.out.println(sessionData.isLogin());
         sessionData.setLogin(true);
-//        System.out.println(sessionData.isLogin());
+//    System.out.println(sessionData.isLogin());
 
-        this.passData(res);
+
     }
 
 }

@@ -1,6 +1,8 @@
 import constance.events.ClientEvents;
+import dataextracter.LoginExtracter;
 import message.Messager;
 import message.MessagerInstance;
+import org.apache.zookeeper.Login;
 import user.sender.data.*;
 import com.google.gson.Gson;
 import session.SessionStore;
@@ -30,8 +32,9 @@ public class UserSender implements  Runnable{
             }
 
             Response res = this.gson.fromJson(message, Response.class);
+            LoginExtracter LE = new LoginExtracter();
             String event = res.getType();
-            System.out.println(event);
+//            System.out.println(event);
             if(event.equals(ClientEvents.LOGIN_RECEIVE.getString())){
                 ush.loginData(res);
             }else {

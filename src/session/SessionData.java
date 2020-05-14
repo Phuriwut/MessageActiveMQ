@@ -83,11 +83,11 @@ public class SessionData {
         ooj.put("firstname",firstname);
         ooj.put("lastname",lastname);
         ooj.put("email",email);
+        ooj.put("age",age);
         ooj.put("career",career);
-        ooj.put("incomce",income);
+        ooj.put("income",income);
         ooj.put("bank_name",bank_name);
         ooj.put("bank_id",bank_id);
-        ooj.put("isLogin",isLogin);
 
         return ooj.toString();
     }

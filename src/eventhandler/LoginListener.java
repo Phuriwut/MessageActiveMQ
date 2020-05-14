@@ -14,9 +14,9 @@ public class LoginListener extends EventListener<LoginExtracter> {
     @Override
     public void onData(SocketIOClient client, LoginExtracter loginExtracter, AckRequest ackRequest) throws Exception {
         loginExtracter.setSessionID(client.getSessionId());
-        System.out.println("Email: " + loginExtracter.getEmail());
-        System.out.println("Password: " +loginExtracter.getPassword());
-        System.out.println("SessionID : " + client.getSessionId());
+//        System.out.println("Email: " + loginExtracter.getEmail());
+//        System.out.println("Password: " +loginExtracter.getPassword());
+//        System.out.println("SessionID : " + client.getSessionId());
 
 
         // We will send a small text message saying 'Hello World!!!'
@@ -25,7 +25,7 @@ public class LoginListener extends EventListener<LoginExtracter> {
             obj.put("type", "LOGIN");
             obj.put("data",loginExtracter.toString());
             this.messager.send(obj.toString());
-            System.out.println("Message Register::: '" + loginExtracter.toString()+ "'");
+            System.out.println("------------------------------------------\nMessage LOGIN::: '" + loginExtracter.toString()+ "'\n------------------------------------------");
         }else {
             statusWarming(client);
         }

@@ -21,6 +21,8 @@ public class LoginExtracter extends Extracter{
     private String email;
     @JsonProperty("password")
     private String password;
+    @JsonProperty("status")
+    private String status;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -44,6 +46,14 @@ public class LoginExtracter extends Extracter{
         this.password = password;
     }
 
+    @JsonProperty("status")
+    public String getStatus() { return status; }
+
+    @JsonProperty("status")
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -60,6 +70,7 @@ public class LoginExtracter extends Extracter{
         obj.put("email", this.email);
         obj.put("password", this.password);
         obj.put("session_id", this.sessionID);
+        obj.put("status",this.status);
         obj.put("type", "LOGIN");
         return obj.toString();
     }

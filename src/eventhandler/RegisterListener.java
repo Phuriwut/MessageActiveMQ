@@ -30,7 +30,7 @@ public class RegisterListener extends  EventListener<RegisterExtracter> {
             obj.put("data", registerExtracter.toString());
             this.messager.send(obj.toString());
 
-            System.out.println("Message Register::: '" + registerExtracter.toString()+ "'");
+            System.out.println("------------------------------------------\nMessage Register::: '" + registerExtracter.toString()+ "'\n------------------------------------------");
         }else {
             statusWarming(client);
         }
@@ -49,7 +49,7 @@ public class RegisterListener extends  EventListener<RegisterExtracter> {
         noti.put("status", 1);
         noti.put("title", "Warming");
         noti.put("detail","Character is wrong\nCheck character again ");
-        System.out.println(noti.toString());
+//        System.out.println(noti.toString());
         client.sendEvent(ClientEvents.NOTIFICATE.getString(),noti.toString());
     }
 }
