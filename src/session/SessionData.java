@@ -53,18 +53,6 @@ public class SessionData {
 
     public void setBank_name(int bank_name) { this.bank_name = bank_name; }
 
-    public SessionData(String firstname, String lastname, String email, String password, int age, int career, int income, String bank_id, int bank_name, SocketIOClient client) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.age = age;
-        this.career = career;
-        this.income = income;
-        this.bank_id = bank_id;
-        this.bank_name = bank_name;
-        this.client = client;
-    }
-
     public boolean isLogin() {
         return isLogin;
     }
@@ -74,6 +62,18 @@ public class SessionData {
     }
 
     public SessionData(SocketIOClient client) {
+        this.client = client;
+    }
+
+    public SessionData(String firstname, String lastname, String email, String password, int age, int career, int income, String bank_id, int bank_name, SocketIOClient client) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.age = age;
+        this.career = career;
+        this.income = income;
+        this.bank_id = bank_id;
+        this.bank_name = bank_name;
         this.client = client;
     }
 

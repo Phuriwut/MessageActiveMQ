@@ -8,6 +8,6 @@ public class LogoutListen extends EventListener<Extracter>{
 
     @Override
     public void onData(SocketIOClient socketIOClient, Extracter registerExtracter, AckRequest ackRequest) throws Exception {
-        this.sessionstore.removeSessionData(socketIOClient.getSessionId().toString());
+        this.sessionstore.getSessionData(socketIOClient.getSessionId().toString()).setLogin(false);
     }
 }

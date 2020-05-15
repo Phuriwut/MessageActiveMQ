@@ -1,4 +1,5 @@
 import message.MessagerInstance;
+import org.bouncycastle.math.ec.ScaleYPointMap;
 import user.sender.data.Response;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -18,6 +19,10 @@ public class UserSenderHandler {
         SessionData sessionData = this.session.getSessionData(res.getSessionID());
         String event = res.getType();
         String data = res.getData();
+        System.out.println("E: "+event);
+        System.out.println("DATA: "+data);
+        System.out.println("ssd :"+res.getSessionID());
+        System.out.println(sessionData.getClient());
         sessionData.getClient().sendEvent(event, data);
     }
 
@@ -36,11 +41,7 @@ public class UserSenderHandler {
         sessionData.setIncome(objectFromString.get("income").getAsInt());
         sessionData.setBank_id(objectFromString.get("bank_id").getAsString());
         sessionData.setBank_name(objectFromString.get("bank_name").getAsInt());
-//    System.out.println(sessionData.isLogin());
         sessionData.setLogin(true);
-//    System.out.println(sessionData.isLogin());
-
-
     }
 
 }
