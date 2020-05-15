@@ -1,16 +1,13 @@
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.store.MemoryStoreFactory;
-
 import javax.jms.*;
-
-// activemq
-
 import constance.events.ServerEvents;
 import dataextracter.Extracter;
 import dataextracter.LoginExtracter;
 import eventhandler.*;
 import dataextracter.RegisterExtracter;
+import user.sender.data.NotificateAlert;
 
 public class main {
     public static void main(String args[])  throws JMSException{
@@ -34,5 +31,9 @@ public class main {
         server.start();
         Thread th = new Thread(new UserSender());
         th.start();
+
+        NotificateAlert nta = new NotificateAlert(server);
+        nta.notificateStart();
+
     }
 }

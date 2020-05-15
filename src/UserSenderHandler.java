@@ -3,7 +3,6 @@ import user.sender.data.Response;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import session.SessionData;
-import session.SessionStore;
 import session.SessionStoreInstance;
 
 public class UserSenderHandler {
