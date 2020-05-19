@@ -14,10 +14,6 @@ public class LoginListener extends EventListener<LoginExtracter> {
     @Override
     public void onData(SocketIOClient client, LoginExtracter loginExtracter, AckRequest ackRequest) throws Exception {
         loginExtracter.setSessionID(client.getSessionId());
-//        System.out.println("Email: " + loginExtracter.getEmail());
-//        System.out.println("Password: " +loginExtracter.getPassword());
-//        System.out.println("SessionID : " + client.getSessionId());
-
 
         // We will send a small text message saying 'Hello World!!!'
         if(true) {

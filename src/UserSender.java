@@ -31,8 +31,6 @@ public class UserSender implements  Runnable{
 
             Response res = this.gson.fromJson(message, Response.class);
             String event = res.getType();
-//            System.out.println(res);
-//            System.out.println(event);
             if(event.equals(ClientEvents.LOGIN_RECEIVE.getString())){
                 ush.loginData(res);
             }else {

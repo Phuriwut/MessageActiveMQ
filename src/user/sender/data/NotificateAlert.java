@@ -21,7 +21,7 @@ public class NotificateAlert {
             String title = input_string.nextLine();
             System.out.print("detail: ");
             String detail = input_string.nextLine();
-            System.out.println("Finish");
+//            System.out.println("Finish");
 
             JSONObject obj = new JSONObject();
             obj.put("status", status);
