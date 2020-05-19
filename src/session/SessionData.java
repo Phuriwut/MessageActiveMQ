@@ -3,6 +3,9 @@ package session;
 import com.corundumstudio.socketio.SocketIOClient;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 public class SessionData {
     private String firstname, lastname;
     private String email;
@@ -12,10 +15,9 @@ public class SessionData {
     private int bank_name;
     private SocketIOClient client;
     private boolean isLogin = false;
+    private LocalDateTime timestamp;
 
-    public void setClient(SocketIOClient client) {
-        this.client = client;
-    }
+    public void setClient(SocketIOClient client) { this.client = client; }
 
     public SocketIOClient getClient() {
         return client;
@@ -61,8 +63,14 @@ public class SessionData {
         isLogin = login;
     }
 
+    public LocalDateTime getTimestamp() { return timestamp; }
+
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp;
+    }
+
     public SessionData(SocketIOClient client) {
         this.client = client;
+        this.timestamp = LocalDateTime.now();
     }
 
     public SessionData(String firstname, String lastname, String email, String password, int age, int career, int income, String bank_id, int bank_name, SocketIOClient client) {
@@ -75,6 +83,7 @@ public class SessionData {
         this.bank_id = bank_id;
         this.bank_name = bank_name;
         this.client = client;
+        this.timestamp = LocalDateTime.now();
     }
 
     @Override
@@ -88,7 +97,21 @@ public class SessionData {
         ooj.put("income",income);
         ooj.put("bank_name",bank_name);
         ooj.put("bank_id",bank_id);
+        ooj.put("is_login",isLogin);
 
         return ooj.toString();
+    }
+
+    public boolean realtime(){
+        LocalDateTime cur = LocalDateTime.now();
+        long hour = this.timestamp.until(cur, ChronoUnit.HOURS);
+        System.out.println(hour);
+
+
+        if(hour>=1){
+            System.out.println(this.client.getSessionId());
+            return false;
+        }
+        return true;
     }
 }

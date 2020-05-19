@@ -6,13 +6,15 @@ import dataextracter.LoginExtracter;
 import dataextracter.NotificationExtracter;
 import org.json.JSONObject;
 
+import javax.jms.JMSException;
+
 public class LoginListener extends EventListener<LoginExtracter> {
     public LoginListener(){
         super();
     }
 
     @Override
-    public void onData(SocketIOClient client, LoginExtracter loginExtracter, AckRequest ackRequest) throws Exception {
+    public void handler(SocketIOClient client, LoginExtracter loginExtracter, AckRequest ackRequest) throws JMSException {
         loginExtracter.setSessionID(client.getSessionId());
 
         // We will send a small text message saying 'Hello World!!!'

@@ -8,12 +8,14 @@ import dataextracter.NotificationExtracter;
 import dataextracter.RegisterExtracter;
 import org.json.JSONObject;
 
+import javax.jms.JMSException;
+
 public class RegisterListener extends  EventListener<RegisterExtracter> {
     public RegisterListener(){
         super();
     }
     @Override
-    public void onData(SocketIOClient client, RegisterExtracter registerExtracter, AckRequest ackRequest) throws Exception {
+    public void handler(SocketIOClient client, RegisterExtracter registerExtracter, AckRequest ackRequest) throws JMSException {
         registerExtracter.setSessionID(client.getSessionId());
         System.out.println("Firstname: " + registerExtracter.getFirstname());
         System.out.println("SessionID : " + client.getSessionId());

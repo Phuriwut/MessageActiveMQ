@@ -31,4 +31,6 @@ public class NotificateAlert {
             server.getBroadcastOperations().sendEvent("NOTIFICATE", obj.toString());
         }
     }
+
+
 }

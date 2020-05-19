@@ -19,10 +19,6 @@ public class UserSenderHandler {
         SessionData sessionData = this.session.getSessionData(res.getSessionID());
         String event = res.getType();
         String data = res.getData();
-        System.out.println("E: "+event);
-        System.out.println("DATA: "+data);
-        System.out.println("ssd :"+res.getSessionID());
-        System.out.println(sessionData.getClient());
         sessionData.getClient().sendEvent(event, data);
     }
 

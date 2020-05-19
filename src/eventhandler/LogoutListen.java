@@ -7,7 +7,7 @@ import dataextracter.Extracter;
 public class LogoutListen extends EventListener<Extracter>{
 
     @Override
-    public void onData(SocketIOClient socketIOClient, Extracter registerExtracter, AckRequest ackRequest) throws Exception {
+    public void handler(SocketIOClient socketIOClient, Extracter registerExtracter, AckRequest ackRequest){
         this.sessionstore.getSessionData(socketIOClient.getSessionId().toString()).setLogin(false);
     }
 }

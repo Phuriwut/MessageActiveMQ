@@ -7,7 +7,14 @@ import dataextracter.Extracter;
 import dataextracter.LoginExtracter;
 import eventhandler.*;
 import dataextracter.RegisterExtracter;
+import session.SessionData;
+import session.SessionStore;
+import session.SessionStoreInstance;
 import user.sender.data.NotificateAlert;
+import user.sender.data.ScheduleLoop;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class main {
     public static void main(String args[])  throws JMSException{
@@ -29,11 +36,17 @@ public class main {
         server.addEventListener(ServerEvents.LOGOUT.getString(), Extracter.class, new LogoutListen());
 
         server.start();
+
+        Timer timer = new Timer ();
+        TimerTask sometask = new ScheduleLoop();
+        timer.schedule (sometask, 0l, 1000*60*60);
+
         Thread th = new Thread(new UserSender());
         th.start();
 
         NotificateAlert nta = new NotificateAlert(server);
         nta.notificateStart();
+
 
     }
 }
